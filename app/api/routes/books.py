@@ -39,6 +39,11 @@ def get_books(session: Session = Depends(get_session)) -> list[Book]:
     return BookService.list_books(session)
 
 
+@router.get("/count")
+def get_book_count(session: Session = Depends(get_session)) -> dict[str, int]:
+    return {"count": BookService.count_books(session)}
+
+
 @router.get("/{book_id}", response_model=Book)
 def get_book(book_id: int, session: Session = Depends(get_session)) -> Book:
     book = BookService.get_book(session, book_id)

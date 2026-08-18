@@ -23,6 +23,10 @@ class BookService:
         return session.get(Book, book_id)
 
     @staticmethod
+    def count_books(session: Session) -> int:
+        return len(session.exec(select(Book)).all())
+
+    @staticmethod
     def update_book(
         session: Session,
         book_id: int,

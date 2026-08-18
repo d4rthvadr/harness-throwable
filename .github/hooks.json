@@ -1,10 +1,25 @@
 {
   "hooks": {
-    "stop": {
-      "command": ".github/hooks/require-tests.sh"
-    },
-    "PreToolUse": {
-      "command": ".github/hooks/log-edits.sh"
-    }
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .github/hooks/require-tests.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .github/hooks/log-edits.sh"
+          }
+        ]
+      }
+    ]
   }
 }

@@ -41,6 +41,32 @@ def test_list_books_returns_created_records(client):
     assert books[0]["title"] == "Dune"
 
 
+def test_get_book_count(client):
+    client.post(
+        "/books/",
+        json={
+            "title": "The Hobbit",
+            "author": "J.R.R. Tolkien",
+            "year": 1937,
+            "isbn": "9780547928227",
+        },
+    )
+    client.post(
+        "/books/",
+        json={
+            "title": "Foundation",
+            "author": "Isaac Asimov",
+            "year": 1951,
+            "isbn": "9780553293357",
+        },
+    )
+
+    response = client.get("/books/count")
+
+    assert response.status_code == 200
+    assert response.json() == {"count": 2}
+
+
 def test_get_book_by_id(client):
     create_response = client.post(
         "/books/",

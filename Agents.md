@@ -20,6 +20,12 @@ The goal is clean, testable API design with clear architectural boundaries.
 - Run API (dev): `uvicorn app.main:app --reload`
 - Run tests: `pytest -q`
 
+## Verification Scripts
+
+- Run `./scripts/check-health.sh` to start the app, hit the critical routes, and report PASS/FAIL for each endpoint.
+- Run `./scripts/check-schema.sh` to compare the generated OpenAPI paths against the documented routes in `docs/api/endpoints.md`.
+- Run both together with `./scripts/check-health.sh && ./scripts/check-schema.sh` before considering a change complete.
+
 ## Architecture Rules
 
 Dependency direction is one-way only:
@@ -42,3 +48,7 @@ Rules:
 - Shared mutable global state for request data.
 
 ## Common Mistakes
+
+- Always regression-test existing functionality when modifying service
+  layer functions — the Stop hook will catch this, but catching it
+  earlier saves iteration cycles

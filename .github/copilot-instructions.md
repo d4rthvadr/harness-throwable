@@ -24,7 +24,15 @@ Prioritize readability, layered design, and simple testable components.
 
 - Run `./scripts/check-health.sh` to start the app, call the key endpoints, and report PASS/FAIL for each route.
 - Run `./scripts/check-schema.sh` to confirm the generated OpenAPI paths match the endpoint inventory in `docs/api/endpoints.md`.
+- Run `./scripts/check-consistency.sh` to enforce route/documentation alignment, ensure the test command remains documented, and flag TODO/FIXME/HACK drift.
 - Use `./scripts/check-health.sh && ./scripts/check-schema.sh` before finalizing a change.
+- Keep the consistency script as a lightweight repo-hygiene gate for PRs and scheduled checks.
+
+## Documentation Agent
+
+- Use `.github/agents/doc-gardener.md` when fixing documentation drift.
+- The doc-gardener agent is documentation-only: it updates docs and references, never application code.
+- Treat stale endpoint docs, outdated command examples, and TODO drift as doc-fix tasks, not code fixes.
 
 ## Architecture
 

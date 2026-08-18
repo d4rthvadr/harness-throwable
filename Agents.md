@@ -24,7 +24,15 @@ The goal is clean, testable API design with clear architectural boundaries.
 
 - Run `./scripts/check-health.sh` to start the app, hit the critical routes, and report PASS/FAIL for each endpoint.
 - Run `./scripts/check-schema.sh` to compare the generated OpenAPI paths against the documented routes in `docs/api/endpoints.md`.
+- Run `./scripts/check-consistency.sh` to verify route-doc alignment, confirm the test command is documented, and scan for TODO/FIXME/HACK drift.
 - Run both together with `./scripts/check-health.sh && ./scripts/check-schema.sh` before considering a change complete.
+- Use the consistency script as a repo hygiene check in CI and before broader documentation cleanup.
+
+## Documentation Agent
+
+- Use `.github/agents/doc-gardener.md` for documentation-only drift fixes.
+- The doc-gardener subagent must update docs only and must not change code, tests, or app behavior.
+- This agent is the default path when the issue is only stale documentation, route drift, or command mismatches.
 
 ## Architecture Rules
 

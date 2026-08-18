@@ -1,0 +1,10 @@
+{
+  "hooks": {
+    "stop": {
+      "command": ".github/hooks/require-tests.sh"
+    },
+    "PreToolUse": {
+      "command": ".github/hooks/log-edits.sh"
+    }
+  }
+}
